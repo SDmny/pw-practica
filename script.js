@@ -62,7 +62,7 @@ if (pagina.includes("servicios")) {
       nombre: "Desarrollo Web",
       desc: "Paginas profesionales",
       precio: 1500,
-      img: "images/1.jpg",
+      img: "images/computadora.png",
     },
     {
       nombre: "Mantenimiento",
@@ -86,7 +86,7 @@ if (pagina.includes("servicios")) {
       nombre: "Soporte",
       desc: "Soporte tecnico",
       precio: 300,
-      img: "images/5.jpg",
+      img: "images/computadora.png",
     },
     { nombre: "App Movil", desc: "Android", precio: 2500, img: "images/6.jpg" },
     {
