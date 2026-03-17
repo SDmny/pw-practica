@@ -1,43 +1,82 @@
 body
 {
+    margin:0;
     font-family: Arial;
-    margin: 0;
+    background:#f0f2f5;
+    height:auto;
+    min-height:100%;
 }
 
 header
 {
-    background: black;
-    color: white;
-    padding: 10px;
+    background:#1f2a44;
+    color:white;
+    padding:15px;
+}
+
+header h1
+{
+    margin:0;
+}
+
+nav
+{
+    margin-top:10px;
 }
 
 nav a
 {
-    color: white;
-    margin: 10px;
+    color:white;
+    margin-right:15px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-footer
+nav a:hover
 {
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
+    text-decoration:underline;
 }
 
 #contenido
 {
-    padding: 20px;
+    padding:20px;
+}
+
+.card
+{
+    background:white;
+    border:1px solid #ccc;
+    padding:15px;
+    margin:10px;
+    border-radius:5px;
+    width:300px;
 }
 
 .servicio
 {
-    border: 1px solid black;
-    margin: 10px;
-    padding: 10px;
+    background:white;
+    border:1px solid #999;
+    padding:10px;
+    margin:10px;
+    border-radius:5px;
+    width:300px;
+    display:inline-block;
+    vertical-align:top;
 }
+
 
 .caro
 {
-    background: lightcoral;
+    background:#ffe0e0;
+    border:2px solid red;
+}
+
+
+footer
+{
+    background:#1f2a44;
+    color:white;
+    text-align:center;
+    padding:10px;
+    margin-top:20px;
 }
