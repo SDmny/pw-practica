@@ -1,0 +1,43 @@
+body
+{
+    font-family: Arial;
+    margin: 0;
+}
+
+header
+{
+    background: black;
+    color: white;
+    padding: 10px;
+}
+
+nav a
+{
+    color: white;
+    margin: 10px;
+}
+
+footer
+{
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+#contenido
+{
+    padding: 20px;
+}
+
+.servicio
+{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+
+.caro
+{
+    background: lightcoral;
+}
