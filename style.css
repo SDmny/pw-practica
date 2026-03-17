@@ -1,88 +1,98 @@
-body
-{
-    margin:0;
-    font-family: Arial;
-    background:#f0f2f5;
-    height:auto;
-    min-height:100%;
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f0f2f5;
 }
 
-header
-{
-    background:#1f2a44;
-    color:white;
-    padding:15px;
+/* header */
+header {
+  background: #1f2a44;
+  color: white;
+  padding: 15px;
+}
+header h1 {
+  margin: 0;
 }
 
-header h1
-{
-    margin:0;
+nav {
+  margin-top: 10px;
+}
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
 }
 
-nav
-{
-    margin-top:10px;
+/* contenido */
+
+#contenido {
+  padding: 20px;
+  text-align: center;
 }
 
-nav a
-{
-    color:white;
-    margin-right:15px;
-    text-decoration:none;
-    font-weight:bold;
-}
+/* tarjetas index */
 
-nav a:hover
-{
-    text-decoration:underline;
-}
-
-#contenido
-{
-    padding:20px;
-}
-
-.card
-{
-    background:white;
-    border:1px solid #ccc;
-    padding:15px;
-    margin:10px;
-    border-radius:5px;
-    width:300px;
-}
-
-.servicio
-{
-    background:white;
-    border:1px solid #999;
-    padding:10px;
-    margin:10px;
-    border-radius:5px;
-    width:300px;
-    display:inline-block;
-    vertical-align:top;
+.card {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 6px;
+  width: 300px;
 }
 
 
-.caro
-{
-    background:#ffe0e0;
-    border:2px solid red;
+/* servicios */
+
+.servicio {
+  width: 320px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  display: inline-block;
+  vertical-align: top;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
-
-footer
-{
-    background:#1f2a44;
-    color:white;
-    text-align:center;
-    padding:10px;
-    margin-top:20px;
+/* alternar colores */
+.servicio:nth-child(odd) {
+  background: #bbe5bd;
+}
+.servicio:nth-child(even) {
+  background: #cbc1d1;
 }
 
-image
-{
-    width:100%;
-    height:auto;
+/* precio caro */
+.caro {
+  border: 4px solid red;
+}
+
+/* texto */
+.servicio h2 {
+  margin-top: 0;
+}
+.servicio p {
+  font-size: 14px;
+}
+
+/* imagen centrada */
+.servicio img {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* footer */
+footer {
+  background: #1f2a44;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
 }
