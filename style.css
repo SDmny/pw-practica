@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #f0f2f5;
+  background: #f4f9ff;
 }
 
 /* header */
@@ -56,7 +56,7 @@ nav a:hover {
   display: inline-block;
   vertical-align: top;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  color: white;
+  color: #321c1c;
 }
 
 /* alternar colores */
