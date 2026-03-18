@@ -1,7 +1,9 @@
+import Services from "./components/Services.jsx";
+
 function App() {
   return (
     <>
-      <h1>Hola Mundo</h1>
+      <Services></Services>
     </>
   );
 }
