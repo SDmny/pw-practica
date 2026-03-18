@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Servicios</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Lista de Productos</h1>
+
+    <a href="alta.html">Agregar nuevo producto</a>
+
+    <div id="listaProductos"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const lista = document.getElementById("listaProductos");
+        const productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+        if (productos.length === 0) {
+          lista.textContent = "No hay productos registrados.";
+        } else {
+          productos.forEach((p) => {
+            const item = document.createElement("div");
+            item.classList.add("producto");
+            item.innerHTML = `
+            <strong>${p.nombre}</strong> - $${p.precio} <br>
+            Categoría: ${p.categoria} <br>
+            ${p.descripcion}
+          `;
+            lista.appendChild(item);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
