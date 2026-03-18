@@ -49,7 +49,7 @@ function Services() {
   }, [services]);
 
   return (
-    <div id="contenido">
+    <>
       <h1>Lista de Servicios</h1>
       {services.length === 0 ? (
         <p>No hay servicios registrados.</p>
@@ -64,7 +64,7 @@ function Services() {
           />
         ))
       )}
-    </div>
+    </>
   );
 }
 

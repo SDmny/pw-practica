@@ -1,13 +1,22 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <>
-      <h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
-
-      <nav>
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="alta.html">Alta Producto</a>
-      </nav>
+      <header>
+        <h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
+        <nav>
+          <Link to="/" className="nav-link">
+            Inicio
+          </Link>
+          <Link to="/servicios" className="nav-link">
+            Servicios
+          </Link>
+          <Link to="/alta" className="nav-link">
+            Alta Servicio
+          </Link>
+        </nav>
+      </header>
     </>
   );
 }
