@@ -4,12 +4,13 @@ body {
   background: #f4f9ff;
 }
 
-/* header */
+/* Header */
 header {
   background: #1f2a44;
   color: white;
   padding: 15px;
 }
+
 header h1 {
   margin: 0;
 }
@@ -17,78 +18,98 @@ header h1 {
 nav {
   margin-top: 10px;
 }
+
 nav a {
   color: white;
   margin-right: 15px;
   text-decoration: none;
   font-weight: bold;
 }
+
 nav a:hover {
   text-decoration: underline;
 }
 
-/* contenido */
 
+/* Contenido */
 #contenido {
   padding: 20px;
   text-align: center;
 }
 
-/* tarjetas index */
 
+/* Curriculum */
 .card {
   background: white;
   border: 1px solid #ccc;
-  padding: 15px;
-  margin: 10px auto;
-  border-radius: 6px;
-  width: 300px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 8px;
+  width: 450px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  text-align: justify;
 }
 
+.card h2 {
+  text-align: center;
+  color: #1f2a44;
+}
 
-/* servicios */
+.card p {
+  margin: 6px 0;
+}
 
+/* Servicios*/
 .servicio {
   width: 320px;
+  height: 380px;
   margin: 15px;
   padding: 15px;
   border-radius: 8px;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   vertical-align: top;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
   color: #321c1c;
 }
 
-/* alternar colores */
 .servicio:nth-child(odd) {
   background: #bbe5bd;
 }
+
 .servicio:nth-child(even) {
   background: #cbc1d1;
 }
 
-/* precio caro */
+/* caro */
 .caro {
   border: 4px solid red;
 }
 
-/* texto */
 .servicio h2 {
-  margin-top: 0;
+  margin: 5px;
 }
+
 .servicio p {
   font-size: 14px;
 }
 
-/* imagen centrada */
+/* Imagen tamaño fijo */
 .servicio img {
+
+  width: 180px;
+  height: 120px;
+
+  object-fit: contain;
+
   display: block;
   margin: auto;
-  margin-top: 10px;
-  border-radius: 5px;
+
 }
 
-/* footer */
+/* Footer */
 footer {
   background: #1f2a44;
   color: white;
