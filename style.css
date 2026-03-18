@@ -30,13 +30,11 @@ nav a:hover {
   text-decoration: underline;
 }
 
-
 /* Contenido */
 #contenido {
   padding: 20px;
   text-align: center;
 }
-
 
 /* Curriculum */
 .card {
@@ -46,7 +44,7 @@ nav a:hover {
   margin: 15px auto;
   border-radius: 8px;
   width: 450px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   text-align: justify;
 }
 
@@ -71,7 +69,7 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   vertical-align: top;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   color: #321c1c;
 }
 
@@ -98,7 +96,6 @@ nav a:hover {
 
 /* Imagen tamaño fijo */
 .servicio img {
-
   width: 180px;
   height: 120px;
 
@@ -106,7 +103,6 @@ nav a:hover {
 
   display: block;
   margin: auto;
-
 }
 
 /* Footer */
