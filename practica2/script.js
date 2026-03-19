@@ -1,3 +1,5 @@
+// header, footer, ubi de pag, index y team, servicios, alta, guardar alta, borrar alta
+
 document.addEventListener("DOMContentLoaded", function () {
   var cont = document.getElementById("contenido");
 
@@ -5,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var header = document.createElement("header");
 
   header.innerHTML = `
-  <h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
-  
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="servicios.html">Servicios</a>
-    <a href="alta.html">Alta Producto</a>
-  </nav>
-  `;
+    <h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
+    
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="alta.html">Alta Producto</a>
+    </nav>
+    `;
 
   document.body.prepend(header);
 
@@ -20,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var footer = document.createElement("footer");
 
   footer.innerHTML = `
-  <p>2026 - ISC - Catalogo de Servicios</p>
-  <a href="https://validator.w3.org/nu/#textarea" target="_blank">
-  <img src="https://www.w3.org/Icons/valid-html401">
-  </a>
-  <a href="https://jigsaw.w3.org/css-validator/#validate-by-input" target="_blank">
-  <img src="https://jigsaw.w3.org/css-validator/images/vcss">
-  </a>
-  `;
+    <p>2026 - ISC - Catalogo de Servicios</p>
+    <a href="https://validator.w3.org/nu/#textarea" target="_blank">
+    <img src="https://www.w3.org/Icons/valid-html401">
+    </a>
+    <a href="https://jigsaw.w3.org/css-validator/#validate-by-input" target="_blank">
+    <img src="https://jigsaw.w3.org/css-validator/images/vcss">
+    </a>
+    `;
 
   document.body.appendChild(footer);
 
@@ -209,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cont.appendChild(form);
 
-    /* Guardar */
+    // Guardar
     document.getElementById("guardar").addEventListener("click", function () {
       let nombre = document.getElementById("nombre").value.trim();
       let desc = document.getElementById("desc").value.trim();
@@ -249,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     });
 
-    /* Borrar */
+    // Borrar
     document.getElementById("borrar").addEventListener("click", function () {
       let nombreBorrar = document.getElementById("borrarNombre").value.trim();
 
