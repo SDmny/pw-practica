@@ -5,11 +5,27 @@ function ServiceAddForm() {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState("");
-  const [imagen, setImagen] = useState("");
+
+  const [file, setFile] = useState(null);
 
   const [borrarNombre, setBorrarNombre] = useState("");
 
   const [error, setError] = useState("");
+
+  const base = [
+
+    { nombre: "Desarrollo Web" },
+    { nombre: "Mantenimiento" },
+    { nombre: "Redes" },
+    { nombre: "Base de Datos" },
+    { nombre: "Soporte" },
+    { nombre: "App Movil" },
+    { nombre: "Seguridad" },
+    { nombre: "Servidor" },
+    { nombre: "Linux" },
+    { nombre: "Consultoria" }
+
+  ];
 
   // Guardar
   const guardarServicio = (e) => {
@@ -19,36 +35,81 @@ function ServiceAddForm() {
     setError("");
 
     if (
-      !nombre ||
-      !descripcion ||
-      !imagen ||
-      isNaN(precio) ||
-      precio <= 0
+      nombre === "" ||
+      descripcion === "" ||
+      precio === "" ||
+      !file
     ) {
-      setError("Complete todos los campos correctamente");
+      setError("Complete todos los campos");
       return;
     }
 
-    const nuevo = {
-      nombre: nombre,
-      desc: descripcion,
-      precio: parseFloat(precio),
-      img: imagen,
-    };
+    if (precio <= 0) {
+      setError("Precio debe ser mayor a 0");
+      return;
+    }
+
 
     let lista =
       JSON.parse(
         localStorage.getItem("servicios")
       ) || [];
 
-    lista.push(nuevo);
+    // Validar base
+    for (let i = 0; i < base.length; i++) {
 
-    localStorage.setItem(
-      "servicios",
-      JSON.stringify(lista)
-    );
+      if (
+        base[i].nombre.toLowerCase() ===
+        nombre.toLowerCase()
+      ) {
+        setError(
+          "Ya existe un servicio con ese nombre"
+        );
+        return;
+      }
 
-    window.location.href = "/servicios";
+    }
+
+    // Validar guardados
+    for (let i = 0; i < lista.length; i++) {
+
+      if (
+        lista[i].nombre.toLowerCase() ===
+        nombre.toLowerCase()
+      ) {
+        setError(
+          "Ya existe un servicio con ese nombre"
+        );
+        return;
+      }
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (ev) {
+
+      const nuevo = {
+
+        nombre: nombre,
+        desc: descripcion,
+        precio: parseFloat(precio),
+        img: ev.target.result,
+
+      };
+
+      lista.push(nuevo);
+
+      localStorage.setItem(
+        "servicios",
+        JSON.stringify(lista)
+      );
+
+      window.location.href = "/servicios";
+
+    };
+
+    reader.readAsDataURL(file);
 
   };
 
@@ -57,7 +118,7 @@ function ServiceAddForm() {
 
     setError("");
 
-    if (!borrarNombre) {
+    if (borrarNombre === "") {
       setError("Escribe el nombre");
       return;
     }
@@ -101,7 +162,7 @@ function ServiceAddForm() {
 
     <>
 
-      <h1>Alta de Servicio</h1>
+      <h2>Alta de Servicio</h2>
 
       <form onSubmit={guardarServicio}>
 
@@ -132,9 +193,11 @@ function ServiceAddForm() {
 
         <label>Imagen</label>
         <input
-          value={imagen}
-        onChange={(e) =>
-            setImagen(e.target.value)
+          type="file"
+          onChange={(e) =>
+            setFile(
+              e.target.files[0]
+            )
           }
         />
 
@@ -147,10 +210,11 @@ function ServiceAddForm() {
         <h3>Borrar servicio por nombre</h3>
 
         <input
-          placeholder="Nombre"
           value={borrarNombre}
           onChange={(e) =>
-            setBorrarNombre(e.target.value)
+            setBorrarNombre(
+              e.target.value
+            )
           }
         />
 
