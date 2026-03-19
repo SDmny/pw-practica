@@ -231,12 +231,25 @@ document.addEventListener("DOMContentLoaded", function () {
         error.textContent = "Precio debe ser mayor a 0";
         return;
       }
+      let serviciosBase = [
+        { nombre: "Desarrollo Web" },
+        { nombre: "Mantenimiento" },
+        { nombre: "Redes" },
+        { nombre: "Base de Datos" },
+        { nombre: "Soporte" },
+        { nombre: "App Movil" },
+        { nombre: "Seguridad" },
+        { nombre: "Servidor" },
+        { nombre: "Linux" },
+        { nombre: "Consultoria" },
+      ];
 
       let reader = new FileReader();
       reader.onload = function (e) {
         let lista = JSON.parse(localStorage.getItem("servicios")) || [];
+        let listaCompleta = serviciosBase.concat(lista);
 
-        let exist = lista.some(
+        let exist = listaCompleta.some(
           (servicio) => servicio.nombre.toLowerCase() === nombre.toLowerCase(),
         );
         if (exist) {
