@@ -1,81 +1,178 @@
 import { useState } from "react";
 
 function ServiceAddForm() {
+
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState("");
   const [imagen, setImagen] = useState("");
+
+  const [borrarNombre, setBorrarNombre] = useState("");
+
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  // Guardar
+  const guardarServicio = (e) => {
+
     e.preventDefault();
 
-    if (!nombre || !descripcion || !imagen || isNaN(precio) || precio <= 0) {
-      setError(
-        "Por favor, completa todos los campos correctamente. Ejemplo: precio mayor a 0 e imagen válida.",
-      );
+    setError("");
+
+    if (
+      !nombre ||
+      !descripcion ||
+      !imagen ||
+      isNaN(precio) ||
+      precio <= 0
+    ) {
+      setError("Complete todos los campos correctamente");
       return;
     }
 
-    const nuevoServicio = {
-      nombre,
+    const nuevo = {
+      nombre: nombre,
       desc: descripcion,
       precio: parseFloat(precio),
       img: imagen,
     };
 
-    let servicios = JSON.parse(localStorage.getItem("productos")) || [];
-    servicios.push(nuevoServicio);
-    localStorage.setItem("productos", JSON.stringify(servicios));
+    let lista =
+      JSON.parse(
+        localStorage.getItem("servicios")
+      ) || [];
 
-    // Redirigir a servicios
+    lista.push(nuevo);
+
+    localStorage.setItem(
+      "servicios",
+      JSON.stringify(lista)
+    );
+
     window.location.href = "/servicios";
+
+  };
+
+  // Borrar
+  const borrarServicio = () => {
+
+    setError("");
+
+    if (!borrarNombre) {
+      setError("Escribe el nombre");
+      return;
+    }
+
+    let lista =
+      JSON.parse(
+        localStorage.getItem("servicios")
+      ) || [];
+
+    let nueva = [];
+
+    let encontrado = false;
+
+    for (let i = 0; i < lista.length; i++) {
+
+      if (
+        lista[i].nombre === borrarNombre
+      ) {
+        encontrado = true;
+      } else {
+        nueva.push(lista[i]);
+      }
+
+    }
+
+    if (!encontrado) {
+      setError("No existe ese servicio");
+      return;
+    }
+
+    localStorage.setItem(
+      "servicios",
+      JSON.stringify(nueva)
+    );
+
+    setError("Servicio eliminado");
+
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="nombre">Nombre:</label>
-      <input
-        type="text"
-        id="nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)}
-        required
-      />
 
-      <label htmlFor="descripcion">Descripción:</label>
-      <textarea
-        id="descripcion"
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-        required
-      />
+    <>
 
-      <label htmlFor="precio">Precio:</label>
-      <input
-        type="number"
-        id="precio"
-        min="1"
-        value={precio}
-        onChange={(e) => setPrecio(e.target.value)}
-        required
-      />
+      <h1>Alta de Servicio</h1>
 
-      <label htmlFor="imagen">Imagen (URL):</label>
-      <input
-        type="text"
-        id="imagen"
-        placeholder="images/default.png"
-        value={imagen}
-        onChange={(e) => setImagen(e.target.value)}
-        required
-      />
+      <form onSubmit={guardarServicio}>
 
-      <button type="submit">Guardar</button>
+        <label>Nombre</label>
+        <input
+          value={nombre}
+          onChange={(e) =>
+            setNombre(e.target.value)
+          }
+        />
 
-      {error && <div id="mensajeError">{error}</div>}
-    </form>
+        <label>Descripcion</label>
+        <input
+          value={descripcion}
+          onChange={(e) =>
+            setDescripcion(e.target.value)
+          }
+        />
+
+        <label>Precio</label>
+        <input
+          type="number"
+          value={precio}
+          onChange={(e) =>
+            setPrecio(e.target.value)
+          }
+        />
+
+        <label>Imagen</label>
+        <input
+          value={imagen}
+        onChange={(e) =>
+            setImagen(e.target.value)
+          }
+        />
+
+        <button type="submit">
+          Guardar
+        </button>
+
+        <hr />
+
+        <h3>Borrar servicio por nombre</h3>
+
+        <input
+          placeholder="Nombre"
+          value={borrarNombre}
+          onChange={(e) =>
+            setBorrarNombre(e.target.value)
+          }
+        />
+
+        <button
+          type="button"
+          onClick={borrarServicio}
+        >
+          Borrar
+        </button>
+
+        {error && (
+          <div id="mensajeError">
+            {error}
+          </div>
+        )}
+
+      </form>
+
+    </>
+
   );
+
 }
 
 export default ServiceAddForm;

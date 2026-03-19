@@ -3,6 +3,9 @@ import CV from "./CV";
 function Team() {
   return (
     <>
+
+      <h1>Curriculum del Equipo</h1>
+
       <CV
         nombre={"Jorge Vizaith"}
         area={"Desarrollo Web y Software"}
