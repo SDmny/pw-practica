@@ -1,6 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+
 var cont = document.getElementById("contenido");
 
-//Header
+// Header
 var header = document.createElement("header");
 
 header.innerHTML = `
@@ -15,249 +17,273 @@ header.innerHTML = `
 
 document.body.prepend(header);
 
-//Footer
+// Footer
 var footer = document.createElement("footer");
 
 footer.innerHTML = `
 <p>2026 - ISC - Catalogo de Servicios</p>
 <a href="https://validator.w3.org/nu/#textarea" target="_blank">
-  <img src="https://www.w3.org/Icons/valid-html401" alt="Valid HTML 5.0" class="validator-badge">
+<img src="https://www.w3.org/Icons/valid-html401">
 </a>
 <a href="https://jigsaw.w3.org/css-validator/#validate-by-input" target="_blank">
-  <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS" class="validator-badge">
+<img src="https://jigsaw.w3.org/css-validator/images/vcss">
 </a>
 `;
 
 document.body.appendChild(footer);
 
-//Pagina
+// Pagina
 var pagina = window.location.pathname;
 
-//Index
-
+// Index
 if (pagina.includes("index")) {
-  let titulo = document.createElement("h2");
-  titulo.textContent = "Curriculum del Equipo";
 
-  cont.appendChild(titulo);
+let titulo = document.createElement("h2");
+titulo.textContent = "Curriculum del Equipo";
 
-  var equipo = [
-    {
-      nombre: "Jorge Vizaith",
-      area: "Desarrollo Web y Software",
-      exp: "Experiencia en JavaScript, HTML, CSS, C#, MySQL",
-      edu: "Estudiante de Ingeniería en Sistemas Computacionales",
-      extra: "Experiencia en mantenimiento, soporte técnico y redes",
-    },
+cont.appendChild(titulo);
 
-    {
-      nombre: "Sianya Demuñy",
-      area: "Bases de Datos",
-      exp: "Experiencia en SQL, modelado y diseño de BD",
-      edu: "Estudiante de Ingeniería en Sistemas Computacionales",
-      extra: "Experiencia en análisis de sistemas y documentación",
-    },
-  ];
+var equipo = [
 
-  for (let i = 0; i < equipo.length; i++) {
-    let div = document.createElement("div");
-    div.className = "card";
+{
+nombre: "Jorge Vizaith",
+area: "Desarrollo Web y Software",
+exp: "JavaScript, HTML, CSS, C#, MySQL",
+edu: "Ingeniería en Sistemas",
+extra: "Soporte, redes, mantenimiento"
+},
 
-    let h = document.createElement("h2");
-    h.textContent = equipo[i].nombre;
+{
+nombre: "Sianya Demuñy",
+area: "Bases de Datos",
+exp: "SQL y diseño BD",
+edu: "Ingeniería en Sistemas",
+extra: "Documentación y análisis"
+}
 
-    let p1 = document.createElement("p");
-    p1.innerHTML = "<b>Área:</b> " + equipo[i].area;
+];
 
-    let p2 = document.createElement("p");
-    p2.innerHTML = "<b>Experiencia:</b> " + equipo[i].exp;
+for (let i = 0; i < equipo.length; i++) {
 
-    let p3 = document.createElement("p");
-    p3.innerHTML = "<b>Educación:</b> " + equipo[i].edu;
+let div = document.createElement("div");
+div.className = "card";
 
-    let p4 = document.createElement("p");
-    p4.innerHTML = "<b>Habilidades:</b> " + equipo[i].extra;
+div.innerHTML = `
+<h2>${equipo[i].nombre}</h2>
+<p><b>Área:</b> ${equipo[i].area}</p>
+<p><b>Experiencia:</b> ${equipo[i].exp}</p>
+<p><b>Educación:</b> ${equipo[i].edu}</p>
+<p><b>Habilidades:</b> ${equipo[i].extra}</p>
+`;
 
-    div.appendChild(h);
-    div.appendChild(p1);
-    div.appendChild(p2);
-    div.appendChild(p3);
-    div.appendChild(p4);
+cont.appendChild(div);
 
-    cont.appendChild(div);
-  }
+}
 
-  // Descripcion general
-  let info = document.createElement("p");
-
-  info.textContent =
-    "Equipo de Ingenieros en Sistemas Computacionales con experiencia en desarrollo de software, mantenimiento de equipos, redes, bases de datos, soporte técnico y seguridad informática.";
-
-  cont.appendChild(info);
 }
 
 // Servicios
 if (pagina.includes("servicios")) {
-  // Primero obtenemos productos guardados en localStorage
-  var servicios = JSON.parse(localStorage.getItem("servicios")) || [];
 
-  if (servicios.length === 0) {
-    // Si no hay productos guardados, usamos el array por defecto
-    servicios = [
-      {
-        nombre: "Desarrollo Web",
-        desc: "Paginas profesionales",
-        precio: 1500,
-        img: "images/computadora.png",
-      },
-      {
-        nombre: "Mantenimiento",
-        desc: "Reparacion PC",
-        precio: 500,
-        img: "images/Mantenimiento.png",
-      },
-      {
-        nombre: "Redes",
-        desc: "Instalacion redes",
-        precio: 2000,
-        img: "images/Redes.png",
-      },
-      {
-        nombre: "Base de Datos",
-        desc: "Diseño BD",
-        precio: 1200,
-        img: "images/BD.png",
-      },
-      {
-        nombre: "Soporte",
-        desc: "Soporte tecnico",
-        precio: 300,
-        img: "images/Soporte.png",
-      },
-      {
-        nombre: "App Movil",
-        desc: "Android",
-        precio: 2500,
-        img: "images/AppMovil.png",
-      },
-      {
-        nombre: "Seguridad",
-        desc: "Ciberseguridad",
-        precio: 1800,
-        img: "images/Seguridad.png",
-      },
-      {
-        nombre: "Servidor",
-        desc: "Config servidor",
-        precio: 2200,
-        img: "images/Servidor.png",
-      },
-      {
-        nombre: "Linux",
-        desc: "Admin Linux",
-        precio: 900,
-        img: "images/Linux.png",
-      },
-      {
-        nombre: "Consultoria",
-        desc: "Asesoria",
-        precio: 1100,
-        img: "images/Consultoria.png",
-      },
-    ];
-  }
+let serviciosBase = [
 
-  for (let i = 0; i < servicios.length; i++) {
-    let div = document.createElement("div");
+{nombre:"Desarrollo Web",desc:"Paginas profesionales",precio:1500,img:"images/computadora.png"},
+{nombre:"Mantenimiento",desc:"Reparacion PC",precio:500,img:"images/Mantenimiento.png"},
+{nombre:"Redes",desc:"Instalacion redes",precio:2000,img:"images/Redes.png"},
+{nombre:"Base de Datos",desc:"Diseño BD",precio:1200,img:"images/BD.png"},
+{nombre:"Soporte",desc:"Soporte tecnico",precio:300,img:"images/Soporte.png"},
+{nombre:"App Movil",desc:"Android",precio:2500,img:"images/AppMovil.png"},
+{nombre:"Seguridad",desc:"Ciberseguridad",precio:1800,img:"images/Seguridad.png"},
+{nombre:"Servidor",desc:"Config servidor",precio:2200,img:"images/Servidor.png"},
+{nombre:"Linux",desc:"Admin Linux",precio:900,img:"images/Linux.png"},
+{nombre:"Consultoria",desc:"Asesoria",precio:1100,img:"images/Consultoria.png"}
 
-    if (servicios[i].precio > 1000) {
-      div.className = "servicio caro";
-    } else {
-      div.className = "servicio";
-    }
+];
 
-    let h = document.createElement("h2");
-    h.textContent = servicios[i].nombre;
+let guardados = localStorage.getItem("servicios");
 
-    let p1 = document.createElement("p");
-    p1.textContent = servicios[i].desc;
+if (guardados != null) {
 
-    let p2 = document.createElement("p");
-    p2.textContent = "Precio: $" + servicios[i].precio;
+let extra = JSON.parse(guardados);
 
-    let img = document.createElement("img");
-    img.src = servicios[i].img;
+serviciosBase = serviciosBase.concat(extra);
 
-    div.appendChild(h);
-    div.appendChild(p1);
-    div.appendChild(p2);
-    div.appendChild(img);
+}
 
-    cont.appendChild(div);
-  }
+for (let i = 0; i < serviciosBase.length; i++) {
+
+let s = serviciosBase[i];
+
+let div = document.createElement("div");
+
+if (s.precio > 1000) {
+div.className = "servicio caro";
+} else {
+div.className = "servicio";
+}
+
+div.innerHTML = `
+<h2>${s.nombre}</h2>
+<p>${s.desc}</p>
+<p>Precio: $${s.precio}</p>
+<img src="${s.img}">
+`;
+
+cont.appendChild(div);
+
+}
+
 }
 
 // Alta
-
 if (pagina.includes("alta")) {
-  let titulo = document.createElement("h2");
-  titulo.textContent = "Alta de Servicio";
-  cont.appendChild(titulo);
 
-  let form = document.createElement("form");
-  form.id = "formServicio";
-  form.innerHTML = `
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" required>
+let titulo = document.createElement("h2");
+titulo.textContent = "Alta de Servicio";
 
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" required></textarea>
+cont.appendChild(titulo);
 
-    <label for="precio">Precio:</label>
-    <input type="number" id="precio" min="1" required>
+let form = document.createElement("form");
 
-    <label for="imagen">Imagen (URL):</label>
-    <input type="text" id="imagen" placeholder="images/default.png" required>
+form.innerHTML = `
 
-    <button type="submit">Guardar</button>
-    <div id="mensajeError"></div>
-  `;
-  cont.appendChild(form);
+<label>Nombre</label>
+<input type="text" id="nombre">
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+<label>Descripcion</label>
+<input type="text" id="desc">
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const descripcion = document.getElementById("descripcion").value.trim();
-    const precio = parseFloat(document.getElementById("precio").value);
-    const imagen = document.getElementById("imagen").value.trim();
-    const mensajeError = document.getElementById("mensajeError");
+<label>Precio</label>
+<input type="number" id="precio">
 
-    // Validaciones
-    if (!nombre || !descripcion || isNaN(precio) || precio <= 0 || !imagen) {
-      mensajeError.textContent =
-        "Por favor, completa todos los campos correctamente. Ejemplo: precio mayor a 0 e imagen válida.";
-      return;
-    }
+<label>Imagen</label>
+<input type="text" id="img">
 
-    // Crear objeto servicio
-    const nuevoServicio = {
-      nombre,
-      desc: descripcion,
-      precio,
-      img: imagen,
-    };
+<button type="button" id="guardar">Guardar</button>
 
-    // Obtener servicios existentes
-    let servicios = JSON.parse(localStorage.getItem("productos")) || [];
+<hr>
 
-    // Agregar nuevo servicio
-    servicios.push(nuevoServicio);
+<h3>Borrar servicio por nombre</h3>
 
-    // Guardar en localStorage
-    localStorage.setItem("productos", JSON.stringify(servicios));
+<input type="text" id="borrarNombre">
 
-    // Redirigir a servicios.html
-    window.location.href = "servicios.html";
-  });
+<button type="button" id="borrar">Borrar</button>
+
+<p id="mensajeError"></p>
+
+`;
+
+cont.appendChild(form);
+
+/* Guardar */
+document
+.getElementById("guardar")
+.addEventListener("click", function () {
+
+let nombre = document.getElementById("nombre").value.trim();
+let desc = document.getElementById("desc").value.trim();
+let precio = document.getElementById("precio").value;
+let img = document.getElementById("img").value.trim();
+
+let error = document.getElementById("mensajeError");
+
+error.textContent = "";
+
+if (nombre == "" || desc == "" || precio == "" || img == "") {
+
+error.textContent = "Complete todos los campos";
+return;
+
 }
+
+if (precio <= 0) {
+
+error.textContent = "Precio debe ser mayor a 0";
+return;
+
+}
+
+let lista =
+JSON.parse(localStorage.getItem("servicios")) || [];
+
+let nuevo = {
+
+nombre:nombre,
+desc:desc,
+precio:parseFloat(precio),
+img:img
+
+};
+
+lista.push(nuevo);
+
+localStorage.setItem(
+"servicios",
+JSON.stringify(lista)
+);
+
+window.location.href = "servicios.html";
+
+});
+
+/* Borrar */
+document
+.getElementById("borrar")
+.addEventListener("click", function () {
+
+let nombreBorrar =
+document.getElementById("borrarNombre").value.trim();
+
+let error =
+document.getElementById("mensajeError");
+
+error.textContent = "";
+
+if (nombreBorrar == "") {
+
+error.textContent = "Escribe el nombre";
+return;
+
+}
+
+let lista =
+JSON.parse(localStorage.getItem("servicios")) || [];
+
+let nueva = [];
+
+let encontrado = false;
+
+for (let i = 0; i < lista.length; i++) {
+
+if (lista[i].nombre == nombreBorrar) {
+
+encontrado = true;
+
+} else {
+
+nueva.push(lista[i]);
+
+}
+
+}
+
+// Si no existe
+if (!encontrado) {
+
+error.textContent = "No existe ese servicio";
+return;
+
+}
+
+// Guardar
+localStorage.setItem(
+"servicios",
+JSON.stringify(nueva)
+);
+
+error.textContent = "Servicio eliminado";
+
+});
+}
+
+});
