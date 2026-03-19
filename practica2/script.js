@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let error = document.getElementById("mensajeError");
       error.textContent = "";
 
-      if (nombre == "" || desc == "" || precio == "" || img == "") {
+      if (nombre == "" || desc == "" || precio == "" || !file) {
         error.textContent = "Complete todos los campos";
         return;
       }
@@ -235,6 +235,14 @@ document.addEventListener("DOMContentLoaded", function () {
       let reader = new FileReader();
       reader.onload = function (e) {
         let lista = JSON.parse(localStorage.getItem("servicios")) || [];
+
+        let exist = lista.some(
+          (servicio) => servicio.nombre.toLowerCase() === nombre.toLowerCase(),
+        );
+        if (exist) {
+          error.textContent = "Ya existe un servicio con ese nombre";
+          return;
+        }
 
         let nuevo = {
           nombre: nombre,
