@@ -1,3 +1,5 @@
+// header, footer, ubi de pag, index y team, servicios, alta, guardar alta, borrar alta
+
 document.addEventListener("DOMContentLoaded", function () {
   var cont = document.getElementById("contenido");
 
@@ -5,14 +7,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var header = document.createElement("header");
 
   header.innerHTML = `
-<h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
-
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="alta.html">Alta Producto</a>
-</nav>
-`;
+    <h1>Sistema de Servicios - Ingeniero en Sistemas</h1>
+    
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="alta.html">Alta Servicio</a>
+    </nav>
+    `;
 
   document.body.prepend(header);
 
@@ -20,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var footer = document.createElement("footer");
 
   footer.innerHTML = `
-<p>2026 - ISC - Catalogo de Servicios</p>
-<a href="https://validator.w3.org/nu/#textarea" target="_blank">
-<img src="https://www.w3.org/Icons/valid-html401">
-</a>
-<a href="https://jigsaw.w3.org/css-validator/#validate-by-input" target="_blank">
-<img src="https://jigsaw.w3.org/css-validator/images/vcss">
-</a>
-`;
+    <p>2026 - ISC - Catalogo de Servicios</p>
+    <a href="https://validator.w3.org/nu/#textarea" target="_blank">
+    <img src="https://www.w3.org/Icons/valid-html401">
+    </a>
+    <a href="https://jigsaw.w3.org/css-validator/#validate-by-input" target="_blank">
+    <img src="https://jigsaw.w3.org/css-validator/images/vcss">
+    </a>
+    `;
 
   document.body.appendChild(footer);
 
@@ -64,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
       div.className = "card";
 
       div.innerHTML = `
-<h2>${equipo[i].nombre}</h2>
-<p><b>Área:</b> ${equipo[i].area}</p>
-<p><b>Experiencia:</b> ${equipo[i].exp}</p>
-<p><b>Educación:</b> ${equipo[i].edu}</p>
-<p><b>Habilidades:</b> ${equipo[i].extra}</p>
-`;
+        <h2>${equipo[i].nombre}</h2>
+        <p><b>Área:</b> ${equipo[i].area}</p>
+        <p><b>Experiencia:</b> ${equipo[i].exp}</p>
+        <p><b>Educación:</b> ${equipo[i].edu}</p>
+        <p><b>Habilidades:</b> ${equipo[i].extra}</p>
+        `;
 
       cont.appendChild(div);
     }
@@ -160,11 +162,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       div.innerHTML = `
-<h2>${s.nombre}</h2>
-<p>${s.desc}</p>
-<p>Precio: $${s.precio}</p>
-<img src="${s.img}">
-`;
+        <h2>${s.nombre}</h2>
+        <p>${s.desc}</p>
+        <p>Precio: $${s.precio}</p>
+        <img src="${s.img}">
+        `;
 
       cont.appendChild(div);
     }
@@ -181,35 +183,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.innerHTML = `
 
-<label>Nombre</label>
-<input type="text" id="nombre">
+      <label>Nombre</label>
+      <input type="text" id="nombre">
 
-<label>Descripcion</label>
-<input type="text" id="desc">
+      <label>Descripcion</label>
+      <input type="text" id="desc">
 
-<label>Precio</label>
-<input type="number" id="precio">
+      <label>Precio</label>
+      <input type="number" id="precio">
 
-<label>Imagen</label>
-<input type="file" id="img">
+      <label>Imagen</label>
+      <input type="file" id="img">
 
-<button type="button" id="guardar">Guardar</button>
+      <button type="button" id="guardar">Guardar</button>
 
-<hr>
+      <hr>
 
-<h3>Borrar servicio por nombre</h3>
+      <h3>Borrar servicio por nombre</h3>
 
-<input type="text" id="borrarNombre">
+      <input type="text" id="borrarNombre">
 
-<button type="button" id="borrar">Borrar</button>
+      <button type="button" id="borrar">Borrar</button>
 
-<p id="mensajeError"></p>
+      <p id="mensajeError"></p>
 
-`;
+      `;
 
     cont.appendChild(form);
 
-    /* Guardar */
+    // Guardar
     document.getElementById("guardar").addEventListener("click", function () {
       let nombre = document.getElementById("nombre").value.trim();
       let desc = document.getElementById("desc").value.trim();
@@ -220,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let error = document.getElementById("mensajeError");
       error.textContent = "";
 
-      if (nombre == "" || desc == "" || precio == "" || img == "") {
+      if (nombre == "" || desc == "" || precio == "" || !file) {
         error.textContent = "Complete todos los campos";
         return;
       }
@@ -233,6 +235,14 @@ document.addEventListener("DOMContentLoaded", function () {
       let reader = new FileReader();
       reader.onload = function (e) {
         let lista = JSON.parse(localStorage.getItem("servicios")) || [];
+
+        let exist = lista.some(
+          (servicio) => servicio.nombre.toLowerCase() === nombre.toLowerCase(),
+        );
+        if (exist) {
+          error.textContent = "Ya existe un servicio con ese nombre";
+          return;
+        }
 
         let nuevo = {
           nombre: nombre,
@@ -249,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     });
 
-    /* Borrar */
+    // Borrar
     document.getElementById("borrar").addEventListener("click", function () {
       let nombreBorrar = document.getElementById("borrarNombre").value.trim();
 
