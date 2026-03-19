@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <nav>
       <a href="index.html">Inicio</a>
       <a href="servicios.html">Servicios</a>
-      <a href="alta.html">Alta Producto</a>
+      <a href="alta.html">Alta Servicio</a>
     </nav>
     `;
 
